@@ -1,0 +1,26 @@
+# Data
+*.csv
+*.tsv
+data/
+
+# Model checkpoints / artifacts
+*.keras
+*.pt
+*.pth
+*.npz
+coco/
+results_*/
+glove.6B*
+glove_word2vec.txt
+
+# Notebook checkpoints
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# OS
+.DS_Store
