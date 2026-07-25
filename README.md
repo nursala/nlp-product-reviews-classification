@@ -124,3 +124,7 @@ worth it is as important as knowing how to build one.
 
 ## 👥 Team
 Built as a group project across a semester-long NLP course.
+
+- Amer Abu Sair
+- Nour Salah
+- Shadi Younis
