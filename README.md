@@ -38,6 +38,11 @@ Each folder contains its own notebook and a `README.md` with detailed methodolog
 
 ## 📊 Results Summary
 
+![BERT test confusion matrix showing predictions across ratings 1–5](docs/bert-confusion-matrix.svg)
+
+The matrix is drawn from the saved test output in `06_transformers/06_transformers.ipynb`; its 0–4 class indices are shown here as ratings 1–5. Most errors are between adjacent ratings.
+
+
 | Stage | Model | Accuracy | F1-macro |
 |---|---|---|---|
 | 3 | TF-IDF + Logistic Regression | 0.951–0.966 | ~0.95–0.97 |
