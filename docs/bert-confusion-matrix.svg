@@ -4,7 +4,7 @@
 <text x="340" y="587" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" fill="#334155">Predicted rating</text>
 <text x="32" y="320" text-anchor="middle" transform="rotate(-90 32 320)" font-family="Arial,sans-serif" font-size="18" fill="#334155">Actual rating</text>
 <rect x="110" y="90" width="86" height="86" rx="8" fill="#e3ca36"/>
-<text x="153" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" >294</text>
+<text x="153" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#172238" >294</text>
 <rect x="198" y="90" width="86" height="86" rx="8" fill="#47328c"/>
 <text x="241" y="140" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" >12</text>
 <rect x="286" y="90" width="86" height="86" rx="8" fill="#47328c"/>
@@ -16,7 +16,7 @@
 <rect x="110" y="178" width="86" height="86" rx="8" fill="#47328c"/>
 <text x="153" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" >1</text>
 <rect x="198" y="178" width="86" height="86" rx="8" fill="#e3ca36"/>
-<text x="241" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" >291</text>
+<text x="241" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#172238" >291</text>
 <rect x="286" y="178" width="86" height="86" rx="8" fill="#47328c"/>
 <text x="329" y="228" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" >1</text>
 <rect x="374" y="178" width="86" height="86" rx="8" fill="#47328c"/>
@@ -28,7 +28,7 @@
 <rect x="198" y="266" width="86" height="86" rx="8" fill="#47328c"/>
 <text x="241" y="316" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" >0</text>
 <rect x="286" y="266" width="86" height="86" rx="8" fill="#e3ca36"/>
-<text x="329" y="316" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" >309</text>
+<text x="329" y="316" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#172238" >309</text>
 <rect x="374" y="266" width="86" height="86" rx="8" fill="#47328c"/>
 <text x="417" y="316" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" >0</text>
 <rect x="462" y="266" width="86" height="86" rx="8" fill="#47328c"/>
@@ -40,7 +40,7 @@
 <rect x="286" y="354" width="86" height="86" rx="8" fill="#47328c"/>
 <text x="329" y="404" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" >1</text>
 <rect x="374" y="354" width="86" height="86" rx="8" fill="#e3ca36"/>
-<text x="417" y="404" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" >288</text>
+<text x="417" y="404" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#172238" >288</text>
 <rect x="462" y="354" width="86" height="86" rx="8" fill="#47328c"/>
 <text x="505" y="404" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" >5</text>
 <rect x="110" y="442" width="86" height="86" rx="8" fill="#47328c"/>
@@ -52,7 +52,7 @@
 <rect x="374" y="442" width="86" height="86" rx="8" fill="#47328c"/>
 <text x="417" y="492" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" >11</text>
 <rect x="462" y="442" width="86" height="86" rx="8" fill="#e3ca36"/>
-<text x="505" y="492" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#ffffff" >287</text>
+<text x="505" y="492" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" font-weight="700" fill="#172238" >287</text>
 <text x="153" y="552" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#334155">1</text>
 <text x="85" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#334155">1</text>
 <text x="241" y="552" text-anchor="middle" font-family="Arial,sans-serif" font-size="16" fill="#334155">2</text>
