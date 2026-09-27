@@ -1,47 +1,12 @@
-<h1 align="center">🛒 AI Product Reviews — NLP Rating Classification Pipeline</h1>
+# Product Review Rating Classification
+**Python · scikit-learn · PyTorch · Hugging Face Transformers**
 
-<p align="center">
-  An end-to-end NLP pipeline that classifies product reviews into 1–5 star ratings, moving from raw text
-  cleaning all the way through classical ML, unsupervised analysis, and fine-tuned Transformers.<br>
-  Built with <strong>NLTK, spaCy, Gensim, scikit-learn, PyTorch, TensorFlow &amp; Hugging Face Transformers</strong>.
-</p>
+A six-stage NLP course project that predicts **1–5 star ratings** from product review text. It compares TF-IDF and word embeddings, classical classifiers, recurrent networks, and fine-tuned Transformers on the same review domain.
 
----
+## Results
+![BERT test confusion matrix](docs/bert-confusion-matrix.svg)
 
-## 📖 About the Project
-
-This project takes ~10,000 labeled product reviews and pushes them through a full NLP pipeline across
-six progressive stages — cleaning and tokenizing raw text, building and comparing multiple word
-representations, training classical ML baselines, uncovering hidden structure with clustering and
-linguistic parsing, and finally training sequence models and fine-tuning Transformers to see how far
-each approach pushes performance.
-
-Every stage was evaluated independently and compared against the others, with the goal of understanding
-**not just which model wins, but why** — and whether the added complexity of each step was actually worth it.
-
-**Dataset:** [agentlans/ai-product-reviews](https://huggingface.co/datasets/agentlans/ai-product-reviews) (Hugging Face) — ~10,000 English-language product reviews labeled with a 1–5 star rating, fairly balanced across classes (~20% per class).
-
----
-
-## 🗂️ Pipeline Stages
-
-- 🧹 **[01 — Preprocessing](./01_preprocessing)** – Deduplication, language filtering, contraction expansion, URL/email/number normalization, stopword removal, tokenization, and POS-aware lemmatization.
-- 🔢 **[02 — Word Representations](./02_word_representations)** – Co-occurrence + PPMI + SVD embeddings, self-trained Word2Vec and GloVe, benchmarked against pretrained Stanford GloVe.
-- 🎯 **[03 — Classical Classification](./03_classical_classification)** – TF-IDF vs. Word2Vec document vectors, Logistic Regression vs. Naive Bayes, full hyperparameter sweeps and error analysis.
-- 🔍 **[04 — Unsupervised & Linguistic Analysis](./04_unsupervised_and_linguistic_analysis)** – K-Means vs. Hierarchical Clustering, PCA visualization, per-cluster LDA topic modeling, and spaCy/Textacy relation extraction.
-- 🧠 **[05 — Deep Learning (RNN/LSTM)](./05_deep_learning_rnn_lstm)** – SimpleRNN baseline, then packed-sequence GRU/LSTM/BiGRU/BiLSTM models in PyTorch with Word2Vec-initialized embeddings.
-- 🤖 **[06 — Transformers](./06_transformers)** – Fine-tuned DistilBERT and BERT-base for the same 5-class task, with training curves and hard-example error analysis.
-
-Each folder contains its own notebook and a `README.md` with detailed methodology, results, and findings.
-
----
-
-## 📊 Results Summary
-
-![BERT test confusion matrix showing predictions across ratings 1–5](docs/bert-confusion-matrix.svg)
-
-The matrix is drawn from the saved test output in `06_transformers/06_transformers.ipynb`; its 0–4 class indices are shown here as ratings 1–5. Most errors are between adjacent ratings.
-
+The matrix is derived from saved test output in [the Transformer notebook](06_transformers/06_transformers.ipynb), with class indices 0–4 displayed as ratings 1–5. Results below are recorded experiments, not a new training run or a guarantee on other review datasets.
 
 | Stage | Model | Accuracy | F1-macro |
 |---|---|---|---|
@@ -54,82 +19,33 @@ The matrix is drawn from the saved test output in `06_transformers/06_transforme
 | 6 | DistilBERT (fine-tuned) | 0.977 | 0.976 |
 | 6 | BERT-base (fine-tuned) | **0.979** | **0.979** |
 
-**Key takeaway:** TF-IDF consistently beat Word2Vec for document-level classification (rating prediction
-leans on specific word-level cues that averaged embeddings blur), GRU/BiGRU clearly outperformed
-LSTM/BiLSTM in this training run, and Transformers won overall — but only by a slim margin over a
-well-tuned classical baseline. On a clean, balanced dataset like this one, simple methods go a long way,
-and the extra cost of a Transformer buys a real but modest improvement.
 
----
+The recorded BERT result is 97.9% accuracy. TF-IDF with Logistic Regression is also a strong baseline in these experiments. Interpret comparisons alongside each notebook's split, preprocessing, and training configuration; the table alone does not establish performance on independent real-world data.
 
-## 🔍 Selected Highlights
+## Pipeline
+| Stage | Focus |
+| --- | --- |
+| [01 · Preprocessing](01_preprocessing/) | Cleaning, normalization, tokenization, and lemmatization |
+| [02 · Representations](02_word_representations/) | PPMI/SVD, Word2Vec, and GloVe |
+| [03 · Classical models](03_classical_classification/) | TF-IDF/embedding features, Logistic Regression, and Naive Bayes |
+| [04 · Unsupervised analysis](04_unsupervised_and_linguistic_analysis/) | Clustering, topic modeling, and linguistic analysis |
+| [05 · Sequence models](05_deep_learning_rnn_lstm/) | RNN, GRU, LSTM, and bidirectional variants |
+| [06 · Transformers](06_transformers/) | DistilBERT and BERT fine-tuning and error analysis |
 
-- **Stage 2:** representations trained directly on this corpus (Word2Vec, custom GloVe) captured
-  domain-specific meaning noticeably better than generic pretrained Stanford GloVe vectors — e.g. `terrible`
-  → `awful, horrible, dreadful` vs. more generic neighbors from the pretrained model.
-- **Stage 4:** K-Means (k=4) found four clean, interpretable topic clusters (negative/quality complaints,
-  positive experiences, neutral/mixed, and a distinct gaming-review cluster) — chosen over k=5 because
-  unsupervised clustering finds *topic* structure, not sentiment labels. Hierarchical clustering failed on
-  this data, collapsing almost everything into one giant cluster — a classic high-dimensional sparse-data
-  failure mode.
-- **Stage 5:** properly packing variable-length sequences (`pack_padded_sequence`) was essential for
-  correct RNN training; GRU/BiGRU reached ~96.9% accuracy, on par with the classical TF-IDF baseline.
-- **Stage 6:** BERT and DistilBERT both converged cleanly with no overfitting, and the majority of
-  remaining errors were on adjacent ratings (1↔2, 4↔5) and mixed-sentiment reviews — the same failure
-  pattern observed at every earlier stage, pointing to genuine ambiguity in the data rather than a model
-  weakness.
+## Reproduce the experiments
+1. Clone this repository and create an isolated Python environment.
+2. Install the dependencies with `pip install -r requirements.txt`.
+3. Obtain the [agentlans/ai-product-reviews dataset](https://huggingface.co/datasets/agentlans/ai-product-reviews).
+4. Follow each stage's README and notebook for expected dataset paths and intermediate artifacts.
+5. Run stages in order, from preprocessing to Transformers. Training larger models benefits from a GPU.
 
----
+Notebook outputs provide a way to inspect prior experiments without retraining. Dependency compatibility, downloaded models, compute, and random seeds can affect reproduction.
 
-## 🛠️ Tech Stack
+## Engineering focus
+Text preprocessing, representation choice, baseline comparison, sequence handling, model evaluation, and confusion-matrix/error analysis.
 
-| Tool | Purpose |
-|---|---|
-| `pandas`, `numpy` | Data handling |
-| `NLTK` | Tokenization, stopwords, lemmatization, POS tagging |
-| `scikit-learn` | TF-IDF, Logistic Regression, Naive Bayes, K-Means, PCA, SVD, metrics |
-| `Gensim` | Word2Vec, LDA topic modeling |
-| `mittens` | Custom GloVe training |
-| `spaCy` + `Textacy` | Dependency parsing, NER, relation extraction |
-| `TensorFlow / Keras` | SimpleRNN baseline |
-| `PyTorch` | Packed-sequence GRU/LSTM/BiGRU/BiLSTM models |
-| `Hugging Face Transformers` | DistilBERT / BERT fine-tuning |
-| `matplotlib`, `seaborn` | Visualizations |
+## Scope
+Research notebooks for a course project. A deployed inference API and evaluation on an independent review corpus are outside the current documented scope.
 
----
-
-## ▶️ How to Run
-
-1. Clone the repo and install dependencies: `pip install -r requirements.txt`
-2. Download the dataset from the [Hugging Face link](https://huggingface.co/datasets/agentlans/ai-product-reviews) and place it in each stage folder as needed (see individual notebooks for expected filenames).
-3. Run the notebooks in order (`01_preprocessing` → `06_transformers`) — each stage builds on artifacts
-   produced by the previous one (cleaned CSV, tokenized columns, saved embeddings, etc.).
-
----
-
-## 🚀 Possible Future Work
-
-- Revisit the LSTM/BiLSTM training setup in Stage 5 (learning-rate schedule, more epochs) to see if the
-  gap to GRU/BiGRU closes.
-- Add t-SNE as an alternative to PCA for embedding visualization.
-- Formalize the zero-shot/one-shot LLM comparison from Stage 6 into a proper evaluation.
-- Package the best-performing model (BERT, or TF-IDF + Logistic Regression for a low-latency option)
-  behind a simple inference API.
-
----
-
-## 🏁 Conclusion
-
-This project walks a single dataset through the full modern NLP toolkit — from regex-based cleaning to
-fine-tuned Transformers — and treats each stage as a genuine experiment rather than a checkbox. The
-biggest insight isn't that BERT won (it did, by a small margin), it's *why* the gap between BERT and a
-well-tuned TF-IDF + Logistic Regression baseline stayed so small: a clean, balanced dataset lets simple
-methods punch far above their weight, and knowing when the added cost of a heavier model is actually
-worth it is as important as knowing how to build one.
-
-## 👥 Team
-Built as a group project across a semester-long NLP course.
-
-- Amer Abu Sair
-- Nour Salah
-- Shadi Younis
+## Team
+Amer Abu Sair · Nour Salah · Shadi Younis
